@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cilin.CiLin;
 import edu.buaa.edu.wordsimilarity.WordSimilarity;
 import nlpir.segment.SegmentWordUtil;
 import shmtu.util.CommonUtils;
@@ -17,7 +18,8 @@ import shmtu.util.CommonUtils;
  *
  */
 public class WordSimilarityUtil {
-	private static final double minSimilarityThreshold = 0.97;
+	private static final double minSimilarityThreshold = 0.8;
+	private static final double minCinlinSimilarityThreshold = 0.8;
 	/**
 	 * 计算属性列表的 相似度
 	 * 
@@ -73,15 +75,15 @@ public class WordSimilarityUtil {
 			// content, ReadWriteFileWithEncode.DEFAULT_ENCODE);
 		}
 	}
-
 	/**
-	 * 根据属性列表 返回 每个词对应的想相似词 组合
-	 * 
-	 * @param attributs
+	 * 通过Hownet 计算近义词
+	 * @param attributeNameList
 	 * @return
 	 */
-	public static List<String> computeSimilarityWordList(List<String> attributeNameList) {
+	public static List<String> computeSimilarityWordListByHownet(List<String> attributeNameList) {
 		String content = "";
+//		String difContent = "";
+//		String cilinMinContent = "";
 		System.out.println("start compute attribute between-in similarity.num is : " + attributeNameList.size());
 		List<String> newAttributeNameList = new ArrayList<String>();
 		List<String> similarityList = new ArrayList<String>();
@@ -89,33 +91,111 @@ public class WordSimilarityUtil {
 		if (attributeNameList != null && attributeNameList.size() > 1) {
 			int num = attributeNameList.size();
 			Map<String, String> posMap = SegmentWordUtil.getPOSMap(attributeNameList);
-			int count1 = 0;
-			int count2 = 0;
+//			int count1 = 0;
+//			int count2 = 0;
 			for (int i = 0; i < num - 1; i++) {
 				String word1 = attributeNameList.get(i);
-				for (int j = i + 1; j < num; j++) {
+				for (int j = 0; j < num; j++) {
 					String word2 = attributeNameList.get(j);
 					String pos1 = posMap.get(word1);
 					String pos2 = posMap.get(word2);
 					double similarity = WordSimilarity.simWord(word1, word2);
-					if (similarity > minSimilarityThreshold && (!(word1.length() == 1 && word2.length() == 1))) {
-						count1++;
+					// && (!(word1.length() == 1 && word2.length() == 1))
+					if (similarity > minSimilarityThreshold) {
+						// count1++;
 						if (pos1.equals(pos2)) {
-							count2++;
+							// count2++;
 							if (!similityMap.containsKey(word1)) {
-								content += word1 + " and " + word2 + " similarity is : " + similarity + ";pos:" + pos2 + "\r\n";
+								// content += word1 + " and " + word2 + "
+								// similarity is : " + similarity + ";pos:" +
+								// pos2 + "\r\n";
 								newAttributeNameList.add(word1);
 								similityMap.put(word1, word2);
 							} else {
 								String oldSimilarityList = similityMap.get(word1);
 								similityMap.put(word1, oldSimilarityList + " " + word2);
 							}
+						} else {
+							// difContent += word1 + " and " + word2 + "
+							// similarity is : " + similarity + ";pos1:" + pos1
+							// + ";pos2:" + pos2 +"\r\n";
 						}
 					}
 				}
 			}
-			content += "词性筛选前后 " + count1 + " ---;--- " + count2;
-			CommonUtils.writeFile("result/语义相似度带词性的计算结果.txt", content);
+//			content += "词性筛选前后 " + count1 + " ---;--- " + count2;
+//			CommonUtils.writeFile("result/语义相似度带词性词性不同列表的计算结果_小于同义词词林.txt", cilinMinContent);
+//			CommonUtils.writeFile("result/语义相似度带词性词性不同列表的计算结果.txt", difContent);
+			for(String key:newAttributeNameList){
+				content += key +" simility list : " + similityMap.get(key) + "\r\n";
+			}
+			CommonUtils.writeFile("result/基于Hownet语义相似度带词性的计算结果.txt", content);
+		}
+		CommonUtils.print("done for compute attributes between-in similarity and filter with POS.similarity attributes num is :" + newAttributeNameList.size());
+		//筛选 去重
+		similarityList = filterSimilarity(similityMap,newAttributeNameList);
+		//
+		return similarityList;
+	}
+	/**
+	 * 根据属性列表 返回 每个词对应的想相似词 组合
+	 * 根据Hownet和同义词词林
+	 * 
+	 * @param attributs
+	 * @return
+	 */
+	public static List<String> computeSimilarityWordListByHownetAndCilin(List<String> attributeNameList) {
+		String content = "";
+//		String difContent = "";
+//		String cilinMinContent = "";
+		System.out.println("start compute attribute between-in similarity.num is : " + attributeNameList.size());
+		List<String> newAttributeNameList = new ArrayList<String>();
+		List<String> similarityList = new ArrayList<String>();
+		Map<String, String> similityMap = new HashMap<String, String>();
+		if (attributeNameList != null && attributeNameList.size() > 1) {
+			int num = attributeNameList.size();
+			Map<String, String> posMap = SegmentWordUtil.getPOSMap(attributeNameList);
+//			int count1 = 0;
+//			int count2 = 0;
+			for (int i = 0; i < num - 1; i++) {
+				String word1 = attributeNameList.get(i);
+				for (int j = 0; j < num; j++) {
+					String word2 = attributeNameList.get(j);
+					String pos1 = posMap.get(word1);
+					String pos2 = posMap.get(word2);
+					double similarity = WordSimilarity.simWord(word1, word2);
+					// && (!(word1.length() == 1 && word2.length() == 1))
+					if (similarity > minSimilarityThreshold) {
+//						count1++;
+						double cilinSimilarity = WordSimilarityUtil.wordSimilarityCilin(word1,word2);
+						if(cilinSimilarity>minCinlinSimilarityThreshold){
+							if (pos1.equals(pos2)) {
+//								count2++;
+								if (!similityMap.containsKey(word1)) {
+//									content += word1 + " and " + word2 + " similarity is : " + similarity + ";pos:" + pos2 + "\r\n";
+									newAttributeNameList.add(word1);
+									similityMap.put(word1, word2);
+								} else {
+									String oldSimilarityList = similityMap.get(word1);
+									similityMap.put(word1, oldSimilarityList + " " + word2);
+								}
+							}else{
+//								difContent += word1 + " and " + word2 + " similarity is : " + similarity + ";pos1:" + pos1 + ";pos2:" + pos2 +"\r\n";
+							}	
+						}else{
+//							cilinMinContent+=word1 + " and " + word2 + " similarity is : " + similarity+";cilinSimilarity:"+cilinSimilarity+"\r\n";
+						}
+						
+					}
+				}
+			}
+//			content += "词性筛选前后 " + count1 + " ---;--- " + count2;
+//			CommonUtils.writeFile("result/语义相似度带词性词性不同列表的计算结果_小于同义词词林.txt", cilinMinContent);
+//			CommonUtils.writeFile("result/语义相似度带词性词性不同列表的计算结果.txt", difContent);
+			for(String key:newAttributeNameList){
+				content += key +" simility list : " + similityMap.get(key) + "\r\n";
+			}
+			CommonUtils.writeFile("result/基于Hownet_同义词词林语义相似度带词性的计算结果.txt", content);
 		}
 		CommonUtils.print("done for compute attributes between-in similarity and filter with POS.similarity attributes num is :" + newAttributeNameList.size());
 		//筛选 去重
@@ -137,35 +217,73 @@ public class WordSimilarityUtil {
 		CommonUtils.print("filter similarity attribute .remove same similarity .bigin num attribute is: " + attributelistList.size());
 		List<String> similaritylistFilterList = new ArrayList<String>();
 		List<String> newAttributeNameList = new ArrayList<String>();
-//		Map<String,String> filterSimilaritylistMap = new HashMap<String,String>();
+		Map<String,String> filterSimilaritylistMap = new HashMap<String,String>();
 		for (String k : attributelistList) {
 			String similaritylist = similarityListMap.get(k);
 			if(similaritylist!=null){
 				for (String str : similaritylist.split(" ")) {
 					if (!CommonUtils.stringIsEmpty(str)) {
 						String similaritylist2 = similarityListMap.get(str);
-						if(!newAttributeNameList.contains(k))
-								newAttributeNameList.add(k);
 						if (compareSimilaritylistContain(similaritylist, similaritylist2)) {
-							similarityListMap.remove(str);
-						}else{
-							similarityListMap.put(k, similaritylist.replace(str, ""));
+							if(!newAttributeNameList.contains(k)){
+								newAttributeNameList.add(k);
+							}
+							if(filterSimilaritylistMap.get(k)==null&&(!k.equals(str))){
+								
+								filterSimilaritylistMap.put(k, str+" ");
+							}else{
+								if(!k.equals(str))
+									filterSimilaritylistMap.put(k,filterSimilaritylistMap.get(k)+str+" ");
+							}
+//							similarityListMap.remove(str);
 						}
+//						else{
+//							similarityListMap.put(k, similaritylist.replace(str, ""));
+//							similarityListMap.put(str, similaritylist2.replace(k, ""));
+//						}
 					}
 				}
 			}
 		}
 		//
-		String content = "";
-		for (String a : newAttributeNameList) {
-			String similarity = similarityListMap.get(a);
-			if(!CommonUtils.stringIsEmpty(similarity)){
-				similaritylistFilterList.add(a + " " + similarity);
-				content += a + " similarity attribute list is : " + similarity +"\r\n";
+		String[] newAttributeNameArr = CommonUtils.stringlistToArr(newAttributeNameList); 
+		for(String a:newAttributeNameArr){
+			String similarity1 = filterSimilaritylistMap.get(a);
+			if(similarity1!=null){
+				String similarityArr[] = similarity1.split(" ");
+				for(String s:similarityArr){
+					String similarity2 = filterSimilaritylistMap.get(s);
+					if(!CommonUtils.stringIsEmpty(similarity2)){
+						filterSimilaritylistMap.remove(s);
+						newAttributeNameList.remove(s);
+					}
+				}
+				
 			}
 		}
-		content+="num : " + similaritylistFilterList.size();
+		//
+		String content = "";
+		String content2 = "";
+		int totalNum = 0;//总词数目
+		int totalNumList = 0;//约减后的总列表数目
+		for (String a : newAttributeNameList) {
+			String similarity = filterSimilaritylistMap.get(a);
+			if(!CommonUtils.stringIsEmpty(similarity)){
+				totalNum += 1;
+//				totalNumList += 1;
+				totalNum += CommonUtils.getSimilitylistLen(similarity);
+				similaritylistFilterList.add(a + " " + similarity);
+				content += a + " similarity attribute list is : " + similarity +"\r\n";
+				content2 += a + " " + similarity +"\r\n";
+			}
+		}
+		totalNumList = similaritylistFilterList.size();
+		content+="总近义词数目：" + totalNum + "\r\n";
+		content+="约减后列表数目 : " + totalNumList;
+		CommonUtils.print("总近义词数目：" + totalNum );
+		CommonUtils.print("约减后列表数目 : " + totalNumList);
 		CommonUtils.writeFile("result/语义相似度带词性的计算结果去重筛选后.txt", content);
+		CommonUtils.writeFile("result/similityForManual.txt",content2);
 		CommonUtils.print("filter similarity and remove same similarity attributes.result attribute num : " + similaritylistFilterList.size());
 		return similaritylistFilterList;
 	}
@@ -182,7 +300,8 @@ public class WordSimilarityUtil {
 		if (l1 == null || "".equals(l1))
 			return false;
 		if (l2 == null || "".equals(l2))
-			return true;
+//			return true;
+			return false;
 		boolean flag = true;
 		String arr1[] = l1.split(" ");
 		List<String> arr1List = CommonUtils.arrayToList(arr1);
@@ -192,5 +311,16 @@ public class WordSimilarityUtil {
 				return false;
 		}
 		return flag;
+	}
+	/**
+	 * 通过同义词词林计算相似度
+	 * @param word1
+	 * @param word2
+	 * @return
+	 */
+	public static double wordSimilarityCilin(String word1,String word2){
+		double sim = 0;
+		sim = CiLin.calcWordsSimilarity(word1, word2);//计算两个词的相似度
+		return sim;
 	}
 }

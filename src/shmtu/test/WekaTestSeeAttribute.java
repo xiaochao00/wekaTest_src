@@ -1,15 +1,14 @@
 package shmtu.test;
 
+import java.util.Date;
 import java.util.List;
 
+import shmtu.util.CommonUtils;
 import shmtu.wekautils.WekaAttributeEvalUtil;
 import shmtu.wekautils.WekaUtil;
 import shmtu.wekautils.WordRelationUtil;
 import shmtu.wordsimilarity.WordSimilarityUtil;
 import weka.core.Instances;
-import weka.core.Utils;
-import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.StringToWordVector;
 
 /**
  * weka试验读 属性
@@ -18,25 +17,31 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
  */
 public class WekaTestSeeAttribute {
 	public static void doMain() throws Exception{
+		Date startTime = new Date();
 		//首先通过 wekaCLI 将数据文件生成词向量 arff 文件
 		//两种加载 arff文件的方法
 		//1,加载text文档
-		String arffFilePath = "wekafiles/relationText.arff";
-//		String arffFilePath = "wekafiles/texts.arff";
+//		String arffFilePath = "wekafiles/relationText.arff";
+		String arffFilePath = "wekafiles/texts.arff";
+//		String arffFilePath = "wekafiles/wb10w-hasni.arff";
+		
 		Instances instances = WekaUtil.loadArffByDataSource(arffFilePath);
 		instances.setClassIndex(instances.numAttributes()-1);
 		WekaUtil.printHeader(instances);
 		// 词向量
 		//2.生成词向量 示例文件
-		StringToWordVector vector = new StringToWordVector();
+//		
+//		StringToWordVector vector = new StringToWordVector();
 		
-		String []options = Utils.splitOptions("-R first-last -W 1000 -prune-rate -1.0 -C -T -I -N 0 ");
-		vector.setOptions(options);
-		vector.setInputFormat(instances);
-		Instances newArff = Filter.useFilter(instances, vector);
+//		String []options = Utils.splitOptions("-R first-last -W 1000 -prune-rate -1.0 -C -T -I -N 0 ");
+//		vector.setOptions(options);
+//		vector.setInputFormat(instances);
+//		Instances newArff = Filter.useFilter(instances, vector);
+		Integer numWordsToKeey = 1000;
+		Instances newArff = WekaUtil.stringToVerctorWeightIFIDF(instances,numWordsToKeey);
 //		WekaUtil.printHeader(newArff);
 		//
-		WekaUtil.pintFilterOption(vector);
+//		WekaUtil.pintFilterOption(vector);
 		//
 //		List<Attribute> attributes = WekaUtil.getAttributesByINstances(newArff);
 //		WekaUtil.writeAttributeToFile("attributes.txt", attributes);
@@ -59,21 +64,34 @@ public class WekaTestSeeAttribute {
 //		}
 		//验证特征选择好坏
 		
-		WekaUtil.catagoryByCHILibSVM(newArff,1000);
+//		WekaUtil.catagoryByCHILibSVM(newArff,1000);
 //		List<String> attributenames = WekaAttributeEvalUtil.igEvaluation(newArff,1000);
-//		WekaUtil.catagoryByIGLibSVM(newArff.c,);
+		WekaUtil.catagoryByCHILibSVM(newArff,1000);
+//		WekaUtil.catagoryByCHINaiveBayesMultinomial(newArff, 1000);
+//		WekaUtil.catagoryByCHILibSVM(newArff, 1000);
+//		WekaUtil.catagoryByIGNaiveBayes(newArff, 1000);
+		Date endTime = new Date();
+		CommonUtils.print("用时:"+(endTime.getTime()-startTime.getTime()));
 //		List<String> attribtuteAfSimilarity = WordSimilarityUtil.computeSimilarityWordList(attributenames);
 		
 	}
 	public static void doSimilarit() throws Exception{
-		String oldfilename = "wekafiles/texts.arff";
+//		String oldfilename = "wekafiles/texts.arff";
+		String oldfilename = "wekafiles/wb10w-hasni.arff";
+//		String oldfilename = "wekafiles/wb10w_14C.arff";
+		
+		int numAttribute = 8100;
+		int reduceNumAttribute = 8000;
 		//1.评估源数据集分类效果
-		loadAndEval(oldfilename,1000);
+		loadAndEval(oldfilename,numAttribute);
+		loadAndEval(oldfilename,reduceNumAttribute);
 		//2.相似度替换
-		String newFilename = "wekafiles/similarityText.arff";
+//		String newFilename = "wekafiles/similarityText.arff";
+		String newFilename = "wekafiles/similarity_wb10w-hasni.arff";
+//		String newFilename = "wekafiles/similarity_wb10w_14C.arff";
 		similarityInstance(oldfilename,newFilename);
 		//3.评估 替换后分类效果
-		loadAndEval(newFilename,900);
+		loadAndEval(newFilename,reduceNumAttribute);
 	}
 	public static void doRelation() throws Exception{
 		String oldfilename = "wekafiles/texts_pre.arff";
@@ -92,34 +110,51 @@ public class WekaTestSeeAttribute {
 		data.setClassIndex(data.numAttributes() - 1);
 		WekaUtil.printHeader(data);
 		// 2.词向量转换
-		Instances dataStringToVector = WekaUtil.stringToVectorWeightBoolean(data);
+		Integer numWordsToKeey = 1000;
+		Instances dataStringToVector = WekaUtil.stringToVectorWeightBoolean(data,numWordsToKeey);
 		dataStringToVector.setClassIndex(0);
 		// 3.特征选择
-		int maxNumAttribute = 800;
+		int maxNumAttribute = 1000;
 		Instances dataAs = WekaAttributeEvalUtil.igEvaluationAndReturn(dataStringToVector, maxNumAttribute);
 		// 4.计算 把两个词的组合作为一个特征
 		List<String> relationList = WordRelationUtil.computeWordCombineListByIG(dataAs);
-		//
 		// 5.重写文件
 		WekaUtil.exchangeDataInstancesByRelationwordList(oldFilename,newFilename,relationList);
 //				"wekafiles/texts.arff", "wekafiles/texts.arff", relationList);
 	}
 	public static void similarityInstance(String oldFilename,String newFilename) throws Exception {
 		// 1.加载text文档
+		CommonUtils.print("similarity compute load arff");
 		Instances instances = WekaUtil.loadArffByDataSource(oldFilename);
 		WekaUtil.printHeader(instances);
 		instances.setClassIndex(instances.numAttributes() - 1);
 		// 2.词向量
-		Instances weightDate = WekaUtil.stringToVerctorWeightIFIDF(instances);
+		CommonUtils.print("similarity compute stringToWord");
+		Integer numWordsToKeey = 3000;
+		Instances weightDate = WekaUtil.stringToVerctorWeightIF(instances,numWordsToKeey);
 		weightDate.setClassIndex(0);// 设置类别索引
 		//3.特征选择
-		List<String> attributenames = WekaAttributeEvalUtil.igEvaluation(weightDate,1000);
+		CommonUtils.print("similarity compute feature selection");
+		List<String> attributenames = WekaAttributeEvalUtil.igEvaluation(weightDate,6000);
+//		List<String> attributenames = WekaAttributeEvalUtil.miEvaluation(weightDate,2000);
+//		miEvaluation
 //		WekaUtil.catagoryByIGLibSVM(newArff.c,);
-		List<String> attribtuteAfSimilarity = WordSimilarityUtil.computeSimilarityWordList(attributenames);
+		CommonUtils.print("similarity compute compute similaritylist");
+		List<String> attribtuteAfSimilarity = WordSimilarityUtil.computeSimilarityWordListByHownetAndCilin(attributenames);
 		//4.重写文件
+		CommonUtils.print("similarity compute rewrite arff");
 		WekaUtil.exchangeDataFileBySimilaritylists(oldFilename,newFilename,attribtuteAfSimilarity);
 		//
 //		Instances newData = WekaUtil.loadArffByDataSource(newFilename)
+	}
+	public static void discretizeInstacesTest() throws Exception{
+		String arffFilePath = "wekafiles/texts.arff";
+		Instances instances = WekaUtil.loadArffByDataSource(arffFilePath);
+		instances.setClassIndex(instances.numAttributes()-1);
+		Integer numWordsToKeey = 1000;
+		Instances newArff = WekaUtil.stringToVerctorWeightIFIDF(instances,numWordsToKeey);
+		WekaUtil.saveArffByInstancesByDataSink(newArff, "wekafiles/before_discretize_texts.arff");
+		WekaUtil.discretizeInstaces(newArff);
 	}
 	public static void loadAndEval(String filename,int maxnum) throws Exception {
 		// 1.加载text文档
@@ -127,16 +162,58 @@ public class WekaTestSeeAttribute {
 		WekaUtil.printHeader(instances);
 		instances.setClassIndex(instances.numAttributes()-1);
 		//2.词向量
-		Instances weightDate = WekaUtil.stringToVerctorWeightIFIDF(instances);
+		Integer numWordsToKeey = 3000;
+		Instances weightDate = WekaUtil.stringToVerctorWeightIF(instances,numWordsToKeey);
 		weightDate.setClassIndex(0);//设置类别索引
 		//3.分类评估
-		WekaUtil.catagoryByIGLibSVM(weightDate, maxnum);
+//		WekaUtil.catagoryByIGLibSVM(weightDate, maxnum);
+		WekaUtil.catagoryByCHINaiveBayesMultinomial(weightDate, maxnum);
+	}
+	public static void doSomeTest() throws Exception{
+		Date startTime = new Date();
+		String arffFilePath = "wekafiles/texts.arff";
+//		String arffFilePath = "wekafiles/wb10w-hasni.arff";
+//		String arffFilePath = "wekafiles/similarity_wb10w-hasni.arff";
+		//1.加载数据集
+		Instances instances = WekaUtil.loadArffByDataSource(arffFilePath);
+		instances.setClassIndex(instances.numAttributes()-1);
+		//2.空间向量转换
+		Integer numWordsToKeey = 1000;
+		Instances newArff = WekaUtil.stringToVerctorWeightIFIDF(instances,numWordsToKeey);
+		newArff.setClassIndex(0);//设置类别索引
+		//3.指定分类方法测试 试验
+//		WekaUtil.catagoryByCHILibSVM(newArff,1000);
+//		WekaUtil.catagoryByCHISMO(newArff,4000);
+		
+		WekaUtil.catagoryByIGNaiveBayesMultinomial(newArff, 2000);
+		WekaUtil.catagoryByIG2NaiveBayesMultinomial(newArff, 2000);
+		Date endTime = new Date();
+		CommonUtils.print("用时:"+(endTime.getTime()-startTime.getTime()));
+	}
+	public static void testIg() throws Exception{
+		String arffFilePath = "wekafiles/texts.arff";
+//		String arffFilePath = "wekafiles/wb10w-hasni.arff";
+		//1.加载数据集
+		Instances instances = WekaUtil.loadArffByDataSource(arffFilePath);
+		instances.setClassIndex(instances.numAttributes()-1);
+		//2.空间向量转换
+		Integer numWordsToKeey = 1000;
+		Instances newArff = WekaUtil.stringToVerctorWeightIFIDF(instances,numWordsToKeey);
+		newArff.setClassIndex(0);//设置类别索引
+		//3.ig评估
+		WekaAttributeEvalUtil.igEval(newArff, 1000);
 	}
 	public static void main(String[]args) throws Exception{
 //		doMain();
-		doSimilarit();
-//		loadAndEval("wekafiles/texts.arff",900);
+//		doSimilarit();
+		loadAndEval("wekafiles/texts1926.arff",900);
 //		doRelation();
 //		WekaUtil.preProcessARFF("wekafiles/texts.arff", "wekafiles/texts_pre.arff");
+//		WekaUtil.preProcessARFF("wekafiles/wb10w-hasni.arff", "wekafiles/wb10w_pre.arff","wekafiles/shortText.arff");
+//		discretizeInstacesTest();
+//		doSomeTest();
+//		testIg();
+//		Evaluation e = new Evaluation(null);
+		
 	}
 }

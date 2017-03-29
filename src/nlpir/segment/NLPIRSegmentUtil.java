@@ -84,7 +84,7 @@ public class NLPIRSegmentUtil {
 	private static Set<String> addStopwords(String type) {
 		Set<String> stopwords = new HashSet<String>();
 		InputStream input = null;
-		String filepath = "edu/shmtu/nlap/weibo/catagory/segment/" + type + ".txt";
+		String filepath = "nlpir/segment/" + type + ".txt";
 		input = NLPIRSegmentUtil.class.getClassLoader().getResourceAsStream(filepath);
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"));
@@ -113,7 +113,7 @@ public class NLPIRSegmentUtil {
 		return stopwords;
 	}
 	public static void main(String []args){
-		String text = "1080p 湖南卫视 2017 重点 走势 官方 版 周 播 时间 固定 每周 周三 晚 00 王牌 节目 快乐大本营 每周 晚 天天向上 每周 晚 00 回归 节目 百 变 咖 秀 花儿 少年 周四 综艺 挡 婚恋 节目 贯穿 季度 季 播 节目 数量 增至 档 贯穿 周四 00 周五 周六 00 ',综艺娱乐";
+		String text = "麻婆豆腐 喵星人";
 		System.out.println(segment(text));
 	}
 	

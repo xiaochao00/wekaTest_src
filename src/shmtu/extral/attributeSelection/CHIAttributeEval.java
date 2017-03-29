@@ -6,16 +6,11 @@ import shmtu.wekautils.WekaComputeUtil;
 import weka.attributeSelection.ASEvaluation;
 import weka.attributeSelection.AttributeEvaluator;
 import weka.core.Capabilities;
-import weka.core.ContingencyTables;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.Option;
 import weka.core.OptionHandler;
-import weka.core.Utils;
 import weka.core.Capabilities.Capability;
-import weka.filters.Filter;
-import weka.filters.supervised.attribute.Discretize;
-import weka.filters.unsupervised.attribute.NumericToBinary;
 
 /**
  * 卡方检验 特征评估
@@ -24,9 +19,11 @@ import weka.filters.unsupervised.attribute.NumericToBinary;
  */
 public class CHIAttributeEval extends ASEvaluation implements AttributeEvaluator, OptionHandler {
 	private double[] m_CHIs;
+	private double[][] m_CHI_matrix;
 	/** Treat missing values as a seperate value */
 	private boolean m_missing_merge;
-
+	/** for serialization */
+	static final long serialVersionUID = -1949849512589218931L;
 	public CHIAttributeEval() {
 		resetOptions();
 	}
@@ -118,9 +115,21 @@ public class CHIAttributeEval extends ASEvaluation implements AttributeEvaluator
 		// TODO Auto-generated method stub
 		return m_CHIs[attribute];
 	}
-
+	
+	public double[] termsEvaluateOfClass(int classindex){
+		int classsize = m_CHI_matrix[0].length;
+		double [] c_termsevaluate = null;
+		if(classindex<classsize&&classindex>=0){
+			c_termsevaluate = new double[m_CHI_matrix.length];
+			for(int i=0;i<m_CHI_matrix.length;i++){
+				c_termsevaluate[i] = m_CHI_matrix[i][classindex];
+			}
+		}
+		return c_termsevaluate;
+	}
 	@Override
 	public void buildEvaluator(Instances data) throws Exception {
+		
 		// TODO Auto-generated method stub
 		// can evaluator handle data?
 		getCapabilities().testWithFail(data);
@@ -129,16 +138,16 @@ public class CHIAttributeEval extends ASEvaluation implements AttributeEvaluator
 		int numInstances = data.numInstances();
 		int numClasses = data.attribute(classIndex).numValues();
 		//
-		if (!m_Binarize) {
-			Discretize disTransform = new Discretize();
-			disTransform.setUseBetterEncoding(true);
-			disTransform.setInputFormat(data);
-			data = Filter.useFilter(data, disTransform);
-		} else {
-			NumericToBinary binTransform = new NumericToBinary();
-			binTransform.setInputFormat(data);
-			data = Filter.useFilter(data, binTransform);
-		}
+//		if (!m_Binarize) {
+//			Discretize disTransform = new Discretize();
+//			disTransform.setUseBetterEncoding(true);
+//			disTransform.setInputFormat(data);
+//			data = Filter.useFilter(data, disTransform);
+//		} else {
+//			NumericToBinary binTransform = new NumericToBinary();
+//			binTransform.setInputFormat(data);
+//			data = Filter.useFilter(data, binTransform);
+//		}
 		// Reserve space and initialize counters
 		double[][] counts = new double[data.numAttributes()][];
 		for (int k = 0; k < data.numAttributes(); k++) {
@@ -174,12 +183,14 @@ public class CHIAttributeEval extends ASEvaluation implements AttributeEvaluator
 		}
 		// Compute info gains
 		m_CHIs = new double[data.numAttributes()];
+		//
+		m_CHI_matrix = new double[m_CHIs.length][numClasses];
 		for (int i = 0; i < data.numAttributes(); i++) {
 			if (i != classIndex) {
 				m_CHIs[i] = WekaComputeUtil.computeMaxCHI(counts[i], classCounts);
 				// System.out.println(m_CHIs[i]);
+				m_CHI_matrix[i] = WekaComputeUtil.computeCHI(counts[i], classCounts);
 			}
 		}
 	}
-
 }

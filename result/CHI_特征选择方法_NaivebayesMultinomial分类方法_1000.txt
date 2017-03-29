@@ -1,0 +1,37 @@
+
+Correctly Classified Instances        1414               73.4164 %
+Incorrectly Classified Instances       512               26.5836 %
+Kappa statistic                          0.699 
+Mean absolute error                      0.0885
+Root mean squared error                  0.2065
+Relative absolute error                 44.9357 %
+Root relative squared error             65.7749 %
+Total Number of Instances             1926     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.802    0.013    0.878      0.802    0.838      0.822    0.976     0.901     体育
+                 0.789    0.129    0.515      0.789    0.623      0.560    0.932     0.787     军事
+                 0.516    0.020    0.770      0.516    0.618      0.593    0.907     0.667     历史
+                 0.770    0.048    0.698      0.770    0.732      0.692    0.936     0.818     时事
+                 0.688    0.018    0.820      0.688    0.748      0.724    0.944     0.798     汽车
+                 0.904    0.025    0.798      0.904    0.848      0.832    0.984     0.915     电影
+                 0.580    0.017    0.804      0.580    0.674      0.653    0.915     0.732     科技
+                 0.635    0.007    0.898      0.635    0.744      0.736    0.936     0.771     综艺娱乐
+                 0.920    0.027    0.797      0.920    0.855      0.839    0.991     0.939     美食
+Weighted Avg.    0.734    0.038    0.761      0.734    0.734      0.707    0.945     0.811     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   <-- classified as
+ 158  25   1   5   2   3   1   1   1 |   a = 体育
+   5 225  10  17   5   8   1   1  13 |   b = 军事
+   5  55 114  18   2   7   9   1  10 |   c = 历史
+   2  23   8 187   5   4   5   4   5 |   d = 时事
+   1  30   3  15 141   4   9   0   2 |   e = 汽车
+   2   9   1   2   1 170   0   2   1 |   f = 电影
+   2  32   6  13  14   7 119   3   9 |   g = 科技
+   4  29   4   9   2   9   3 115   6 |   h = 综艺娱乐
+   1   9   1   2   0   1   1   1 185 |   i = 美食
+

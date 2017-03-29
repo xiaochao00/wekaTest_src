@@ -3,7 +3,6 @@ package shmtu.test;
 import java.util.List;
 
 import shmtu.util.CommonUtils;
-import shmtu.wekautils.WekaAttributeEvalUtil;
 import shmtu.wekautils.WekaTrainAndTestUtil;
 import shmtu.wekautils.WekaUtil;
 import shmtu.wekautils.WordRelationUtil;
@@ -40,22 +39,29 @@ public class WekaTrainAndTestTest {
 		CommonUtils.print("训练集 属性数目："+vsmTrainInstances.numAttributes());
 		CommonUtils.print("测试集 属性数目："+vsmTestInstances.numAttributes());
 		//
-		WekaUtil.testsetEvalByIGNaiveBayes(vsmTrainInstances, vsmTestInstances, 1000);
+		WekaUtil.testsetEvalByIGNaiveBayesMultinomial(vsmTrainInstances, vsmTestInstances, 1000);
 	}
 	
 	public static void testsetRelationExtral() throws Exception{
-		String trainfile = "wekafiles/texts_pre.arff";
+//		String trainfile = "wekafiles/texts_pre.arff";
+		String trainfile = "wekafiles/wb10w_pre.arff";
+		
 		String testfile = "wekafiles/shortText.arff";
+//		String testfile = "wekafiles/wb10w_shortText.arff";
 		//String trainnewfile = "wekafiles/texts_pre_relation.arff";
-		String testnewfile = "wekafiles/shortText_relation.arff";
+//		String testnewfile = "wekafiles/shortText_relation.arff";
+		String testnewfile = "wekafiles/wb10w_shortText_relation.arff";
 		//1.先训练 未扩展的分类结果
-		WekaTrainAndTestUtil.evalTrainTestByIGNaiveBayes(trainfile, testfile, 1000);
+//		WekaTrainAndTestUtil.evalTrainTestByIGNaiveBayesMultinomial(trainfile, testfile, 1000);
+		WekaTrainAndTestUtil.evalTrainTestByCHINaiveBayesMultinomial(trainfile, testfile, 2000);
+		
 		// 2.计算 把两个词的组合作为一个特征 计算每个属性的相关相关
-		List<String> relationList = WordRelationUtil.relationCompute(trainfile, 800);
+		List<String> relationList = WordRelationUtil.relationCompute(trainfile, 1000);
 		//3.扩展测试文件，暂不需要扩展原数据文件
 		WekaUtil.exchangeDataInstancesByRelationwordList(testfile, testnewfile, relationList);
-		//4.再次训练 并测试 得到扩展的分类结果
-		WekaTrainAndTestUtil.evalTrainTestByIGNaiveBayes(trainfile, testnewfile, 1000);
+//		4.再次训练 并测试 得到扩展的分类结果
+//		WekaTrainAndTestUtil.evalTrainTestByIGNaiveBayesMultinomial(trainfile, testnewfile, 1000);
+		WekaTrainAndTestUtil.evalTrainTestByCHINaiveBayesMultinomial(trainfile, testnewfile, 2000);
 	}
 	public static void main(String[]args) throws Exception{
 //		trainAndTrainStringToVector();

@@ -6,16 +6,11 @@ import shmtu.wekautils.WekaComputeUtil;
 import weka.attributeSelection.ASEvaluation;
 import weka.attributeSelection.AttributeEvaluator;
 import weka.core.Capabilities;
-import weka.core.ContingencyTables;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.Option;
 import weka.core.OptionHandler;
-import weka.core.Utils;
 import weka.core.Capabilities.Capability;
-import weka.filters.Filter;
-import weka.filters.supervised.attribute.Discretize;
-import weka.filters.unsupervised.attribute.NumericToBinary;
 
 /**
  * 卡方检验 特征评估
@@ -129,16 +124,16 @@ public class MIAttributeEval extends ASEvaluation implements AttributeEvaluator,
 		int classIndex = data.classIndex();
 		int numInstances = data.numInstances();
 		int numClasses = data.attribute(classIndex).numValues();
-		 if (!m_Binarize) {
-		      Discretize disTransform = new Discretize();
-		      disTransform.setUseBetterEncoding(true);
-		      disTransform.setInputFormat(data);
-		      data = Filter.useFilter(data, disTransform);
-		    } else {
-		      NumericToBinary binTransform = new NumericToBinary();
-		      binTransform.setInputFormat(data);
-		      data = Filter.useFilter(data, binTransform);
-		    }
+//		 if (!m_Binarize) {
+//		      Discretize disTransform = new Discretize();
+//		      disTransform.setUseBetterEncoding(true);
+//		      disTransform.setInputFormat(data);
+//		      data = Filter.useFilter(data, disTransform);
+//		    } else {
+//		      NumericToBinary binTransform = new NumericToBinary();
+//		      binTransform.setInputFormat(data);
+//		      data = Filter.useFilter(data, binTransform);
+//		    }
 		// Reserve space and initialize counters
 		double[][] counts = new double[data.numAttributes()][];
 		for (int k = 0; k < data.numAttributes(); k++) {

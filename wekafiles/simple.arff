@@ -1,0 +1,27 @@
+@relation 'D__weibo_weka_data-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.Null-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters \" \\r\\n\\t.,;:\\\'\\\"()?!\"-weka.filters.unsupervised.attribute.StringToWordVector-Rfirst-last-W1000-prune-rate-1.0-I-N0-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.Null-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters \" \\r\\n\\t.,;:\\\'\\\"()?!\"-weka.filters.unsupervised.attribute.StringToWordVector-Rfirst-last-W1000-prune-rate-1.0-C-I-N0-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.Null-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters \" \\r\\n\\t.,;:\\\'\\\"()?!\"-weka.filters.unsupervised.attribute.StringToWordVector-Rfirst-last-W1000-prune-rate-1.0-C-T-N0-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.Null-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters \" \\r\\n\\t.,;:\\\'\\\"()?!\"'
+
+@attribute @@class@@ {0,1}
+@attribute 上门服务 numeric
+@attribute 价格 numeric
+@attribute 优势 numeric
+@attribute 办公 numeric
+@attribute 合适 numeric
+@attribute 很 numeric
+@attribute 有 numeric
+@attribute 用 numeric
+@attribute 这个 numeric
+@attribute 高 numeric
+@attribute ﻿三年 numeric
+@attribute ﻿对得起 numeric
+@attribute ﻿配置 numeric
+@attribute 响 numeric
+@attribute 有异 numeric
+@attribute 电脑 numeric
+@attribute 硬盘 numeric
+@attribute ﻿开机 numeric
+
+@data
+{1 1,3 1,7 1,11 1}
+{0 1,14 1,15 1,16 1,17 1,18 1}
+{2 1,9 1,12 1}
+{4 1,5 1,6 1,8 1,10 1,13 1}

@@ -248,6 +248,7 @@ public class WordSimilarity {
             List<Word> list1 = ALLWORDS.get(word1);
             List<Word> list2 = ALLWORDS.get(word2);
             double max = 0;
+            double min = 1;
             for (Word w1 : list1) {
                 for (Word w2 : list2) {
 //                	Word w1N = copy(w1);
@@ -265,10 +266,12 @@ public class WordSimilarity {
 //                		System.out.println("w2 change error!");
 ////                		System.exit(0);
 //                	}
-                    max = (sim > max) ? sim : max;
+//                    max = (sim > max) ? sim : max;
+                    min = (sim<min)?sim:min;
                 }
             }
-            return max;
+//            return max;
+            return min;
         }
 //        System.out.println("其中有词没有被收录");
         return 0.0;
@@ -404,8 +407,10 @@ public class WordSimilarity {
                 }
             }
             sum += max;
-            list1.remove(index1);
-            list2.remove(index2);
+            if(index1<list1.size())
+            	list1.remove(index1);
+            if(index2<list2.size())
+            	list2.remove(index2);
             count++;
         }
         return (sum + delta * (big - N)) / big;

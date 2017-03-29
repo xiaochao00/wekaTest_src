@@ -1,0 +1,1019 @@
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:14239-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+--------- IG_特征选择方法_libsvm分类方法, maxNumAttribute is 1000 ----------
+classfier method:libsvm ;attribute selection:IG;attributeNum:1000
+Zero Weights processed. Default weights will be used
+
+Correctly Classified Instances        1192               61.8899 %
+Incorrectly Classified Instances       734               38.1101 %
+Kappa statistic                          0.5651
+Mean absolute error                      0.0847
+Root mean squared error                  0.291 
+Relative absolute error                 42.9814 %
+Root relative squared error             92.7165 %
+Total Number of Instances             1926     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.569    0.003    0.949      0.569    0.711      0.714    0.783     0.584     体育
+                 0.940    0.305    0.349      0.940    0.509      0.461    0.818     0.337     军事
+                 0.520    0.008    0.898      0.520    0.659      0.656    0.756     0.523     历史
+                 0.572    0.029    0.739      0.572    0.645      0.607    0.771     0.477     时事
+                 0.566    0.023    0.744      0.566    0.643      0.613    0.771     0.467     汽车
+                 0.644    0.007    0.910      0.644    0.754      0.745    0.818     0.620     电影
+                 0.463    0.038    0.594      0.463    0.521      0.476    0.713     0.332     科技
+                 0.453    0.019    0.707      0.453    0.552      0.532    0.717     0.372     综艺娱乐
+                 0.716    0.009    0.906      0.716    0.800      0.786    0.854     0.678     美食
+Weighted Avg.    0.619    0.060    0.737      0.619    0.638      0.614    0.780     0.481     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   <-- classified as
+ 112  73   0   4   4   1   2   1   0 |   a = 体育
+   0 268   2   5   2   0   2   3   3 |   b = 军事
+   3  68 115  14   3   2  11   3   2 |   c = 历史
+   0  62   9 139  11   1  13   5   3 |   d = 时事
+   2  68   0   5 116   2   9   3   0 |   e = 汽车
+   0  44   1   3   2 121  10   7   0 |   f = 电影
+   1  75   1   5  10   2  95  12   4 |   g = 科技
+   0  66   0  10   5   4  11  82   3 |   h = 综艺娱乐
+   0  44   0   3   3   0   7   0 144 |   i = 美食
+
+
+写入文件成功。result/IG_特征选择方法_libsvm分类方法_1000.txt
+
+Correctly Classified Instances        1192               61.8899 %
+Incorrectly Classified Instances       734               38.1101 %
+Kappa statistic                          0.5651
+Mean absolute error                      0.0847
+Root mean squared error                  0.291 
+Relative absolute error                 42.9814 %
+Root relative squared error             92.7165 %
+Total Number of Instances             1926     
+
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:14239-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+--------------- attributes_selection_ig_1000 ---------------
+class attribute : @attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+属性数目:1001
+------- write attributes list to files:result/attributes_selection_ig_1000.txt  ---------------
+start compute attribute between-in similarity.num is : 1000
+写入文件成功。result/语义相似度带词性词性不同列表的计算结果.txt
+写入文件成功。result/语义相似度带词性的计算结果.txt
+done for compute attributes between-in similarity and filter with POS.similarity attributes num is :102
+filter similarity attribute .remove same similarity .bigin num attribute is: 102
+写入文件成功。result/语义相似度带词性的计算结果去重筛选后.txt
+filter similarity and remove same similarity attributes.result attribute num : 62
+根据相似度列表 修改源文件
+写入文件成功。wekafiles/similarityText.arff
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:14158-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+--------- IG_特征选择方法_libsvm分类方法, maxNumAttribute is 800 ----------
+classfier method:libsvm ;attribute selection:IG;attributeNum:800
+Zero Weights processed. Default weights will be used
+
+Correctly Classified Instances        1180               61.2669 %
+Incorrectly Classified Instances       746               38.7331 %
+Kappa statistic                          0.5583
+Mean absolute error                      0.0861
+Root mean squared error                  0.2934
+Relative absolute error                 43.6841 %
+Root relative squared error             93.4713 %
+Total Number of Instances             1926     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.574    0.003    0.958      0.574    0.717      0.721    0.785     0.593     体育
+                 0.919    0.293    0.353      0.919    0.510      0.457    0.813     0.337     军事
+                 0.493    0.013    0.832      0.493    0.619      0.608    0.740     0.469     历史
+                 0.560    0.032    0.716      0.560    0.628      0.587    0.764     0.456     时事
+                 0.561    0.026    0.723      0.561    0.632      0.600    0.768     0.452     汽车
+                 0.670    0.016    0.824      0.670    0.739      0.719    0.827     0.584     电影
+                 0.498    0.038    0.611      0.498    0.548      0.504    0.730     0.357     科技
+                 0.392    0.019    0.676      0.392    0.497      0.479    0.686     0.322     综艺娱乐
+                 0.726    0.009    0.907      0.726    0.807      0.793    0.859     0.687     美食
+Weighted Avg.    0.613    0.060    0.717      0.613    0.628      0.601    0.776     0.467     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   <-- classified as
+ 113  70   0   4   5   1   2   2   0 |   a = 体育
+   0 262   8   5   2   1   1   3   3 |   b = 军事
+   2  72 109  16   1   2  14   3   2 |   c = 历史
+   0  61   8 136  12   4  15   4   3 |   d = 时事
+   2  69   0   7 115   2   6   3   1 |   e = 汽车
+   0  37   2   2   3 126   9   9   0 |   f = 电影
+   1  67   2   5  12   3 102  10   3 |   g = 科技
+   0  62   1  12   7  14  11  71   3 |   h = 综艺娱乐
+   0  42   1   3   2   0   7   0 146 |   i = 美食
+
+
+写入文件成功。result/IG_特征选择方法_libsvm分类方法_800.txt
+
+Correctly Classified Instances        1180               61.2669 %
+Incorrectly Classified Instances       746               38.7331 %
+Kappa statistic                          0.5583
+Mean absolute error                      0.0861
+Root mean squared error                  0.2934
+Relative absolute error                 43.6841 %
+Root relative squared error             93.4713 %
+Total Number of Instances             1926     
+
+----------------------------------------------------------
+加载数据文件成功
+@relation D__weibo_catagory_data10W_nlpirSegment_hasNI
+
+@attribute text string
+@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+-------------- 文档转变词向量成功 特征数目:19104-------------------
+第一个属性是:@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+最后属性是:@attribute 齐齐哈尔 numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 1000 ----------
+
+Correctly Classified Instances       67837               65.2888 %
+Incorrectly Classified Instances     36066               34.7112 %
+Kappa statistic                          0.6278
+Mean absolute error                      0.0391
+Root mean squared error                  0.1731
+Relative absolute error                 37.6519 %
+Root relative squared error             75.978  %
+Total Number of Instances           103903     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.865    0.011    0.857      0.865    0.861      0.850    0.978     0.894     体育
+                 0.886    0.013    0.736      0.886    0.804      0.799    0.980     0.878     美妆
+                 0.529    0.012    0.668      0.529    0.591      0.579    0.901     0.583     科技
+                 0.677    0.015    0.814      0.677    0.739      0.720    0.935     0.761     动漫
+                 0.924    0.029    0.679      0.924    0.783      0.777    0.983     0.895     美食
+                 0.574    0.017    0.669      0.574    0.618      0.599    0.936     0.639     萌宠
+                 0.819    0.019    0.658      0.819    0.730      0.722    0.960     0.773     电影
+                 0.542    0.022    0.690      0.542    0.607      0.581    0.875     0.601     时事
+                 0.807    0.015    0.719      0.807    0.760      0.750    0.964     0.799     时尚
+                 0.473    0.010    0.661      0.473    0.551      0.544    0.895     0.528     综艺娱乐
+                 0.725    0.014    0.804      0.725    0.762      0.746    0.949     0.796     汽车
+                 0.415    0.012    0.662      0.415    0.510      0.505    0.894     0.507     设计
+                 0.391    0.012    0.652      0.391    0.489      0.484    0.887     0.482     艺术
+                 0.677    0.016    0.714      0.677    0.695      0.677    0.939     0.732     宗教
+                 0.789    0.130    0.390      0.789    0.522      0.490    0.933     0.776     军事
+                 0.436    0.016    0.704      0.436    0.538      0.524    0.894     0.569     历史
+                 0.595    0.005    0.496      0.595    0.541      0.539    0.900     0.482     三农
+                 0.276    0.008    0.337      0.276    0.304      0.296    0.845     0.260     法律
+Weighted Avg.    0.653    0.026    0.682      0.653    0.651      0.636    0.929     0.698     
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o    p    q    r   <-- classified as
+ 6277   19   28   36   47   43   35   74   60   38   42   13   23   44  425   31    7   18 |    a = 体育
+    7 3533   16   20   89   43   13   13   59   17   15   14    7   16  114    9    0    1 |    b = 美妆
+   57   72 2398   96  159   94  107  171   60   63  182   81   25   60  730   67   73   34 |    c = 科技
+   87  191   70 6174  166  234  456  108  142   95   74  183  110   75  851   85    6   13 |    d = 动漫
+    8   44   14   23 5924   69   18   27   26   13   11   37    5   28  130   15   13    6 |    e = 美食
+   42   94   38  117  427 3419   63   74   95   48   41   26   32   90 1288   35    8   19 |    f = 萌宠
+   19   18   18  131   55   55 3553   41   36  120   26   10   34   37  147   29    1    8 |    g = 电影
+  131   78  332  101  212  179  145 4702  130  115  361  105   64  157  914  307  221  418 |    h = 时事
+   31  111   23   46   54   48   44   37 3690   53   48   83   36   14  244   11    0    1 |    i = 时尚
+   85   70   47  109  187  163  211   99  112 1862   49   35   61  136  637   40    9   28 |    j = 综艺娱乐
+   83   49  121   70  132   80  125  282   65   60 5542   45   24   53  851   34    7   21 |    k = 汽车
+   47  142   84  149  294  151   99   57  193   37   87 2224  445  143 1115   53   27   12 |    l = 设计
+  101  124   55  131  211  112  149   91  140   77   69  350 2179  285 1279  181   15   19 |    m = 艺术
+   52   65   58   55  211   93   78   89   90   45   48   30   84 3999  762  100   10   38 |    n = 宗教
+  100   73   88  115  166  122   88  273   94   93  122   30   44   92 7792  457   28  102 |    o = 军事
+  158   96  123  188  302  169  171  358  112   72  128   76  145  296 2269 3687   25   83 |    p = 历史
+   10    6   30    7   37    6    5   55    7    2   14    7   10   15   78   14  459   10 |    q = 三农
+   30   17   47   18   49   27   36  266   21    9   35   10   15   63  364   84   16  423 |    r = 法律
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_1000.txt
+
+Correctly Classified Instances       67837               65.2888 %
+Incorrectly Classified Instances     36066               34.7112 %
+Kappa statistic                          0.6278
+Mean absolute error                      0.0391
+Root mean squared error                  0.1731
+Relative absolute error                 37.6519 %
+Root relative squared error             75.978  %
+Total Number of Instances           103903     
+
+similarity compute load arff
+加载数据文件成功
+@relation D__weibo_catagory_data10W_nlpirSegment_hasNI
+
+@attribute text string
+@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+
+@data
+
+similarity compute stringToWord
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+-------------- 文档转变词向量成功 特征数目:19104-------------------
+第一个属性是:@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+最后属性是:@attribute 齐齐哈尔 numeric
+similarity compute feature selection
+--------------- attributes_selection_ig_1000 ---------------
+class attribute : @attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+属性数目:1001
+------- write attributes list to files:result/attributes_selection_ig_1000.txt  ---------------
+similarity compute compute similaritylist
+start compute attribute between-in similarity.num is : 1000
+写入文件成功。result/语义相似度带词性词性不同列表的计算结果.txt
+写入文件成功。result/语义相似度带词性的计算结果.txt
+done for compute attributes between-in similarity and filter with POS.similarity attributes num is :202
+filter similarity attribute .remove same similarity .bigin num attribute is: 202
+写入文件成功。result/语义相似度带词性的计算结果去重筛选后.txt
+filter similarity and remove same similarity attributes.result attribute num : 135
+similarity compute rewrite arff
+根据相似度列表 修改源文件
+写入文件成功。wekafiles/similarity_wb10w-hasni.arff
+加载数据文件成功
+@relation D__weibo_catagory_data10W_nlpirSegment_hasNI
+
+@attribute text string
+@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+-------------- 文档转变词向量成功 特征数目:18946-------------------
+第一个属性是:@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+最后属性是:@attribute 齐齐哈尔 numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 800 ----------
+
+Correctly Classified Instances       64346               61.9289 %
+Incorrectly Classified Instances     39557               38.0711 %
+Kappa statistic                          0.5915
+Mean absolute error                      0.0429
+Root mean squared error                  0.1787
+Relative absolute error                 41.2907 %
+Root relative squared error             78.4071 %
+Total Number of Instances           103903     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.854    0.012    0.845      0.854    0.850      0.838    0.975     0.883     体育
+                 0.865    0.012    0.744      0.865    0.800      0.794    0.976     0.865     美妆
+                 0.486    0.011    0.663      0.486    0.561      0.551    0.891     0.555     科技
+                 0.560    0.014    0.793      0.560    0.656      0.641    0.908     0.676     动漫
+                 0.917    0.030    0.669      0.917    0.774      0.767    0.981     0.889     美食
+                 0.566    0.019    0.646      0.566    0.603      0.582    0.929     0.619     萌宠
+                 0.769    0.023    0.596      0.769    0.671      0.661    0.948     0.715     电影
+                 0.514    0.028    0.627      0.514    0.565      0.532    0.863     0.570     时事
+                 0.782    0.015    0.702      0.782    0.740      0.728    0.957     0.775     时尚
+                 0.393    0.010    0.601      0.393    0.476      0.470    0.873     0.469     综艺娱乐
+                 0.702    0.014    0.797      0.702    0.747      0.729    0.942     0.775     汽车
+                 0.402    0.011    0.657      0.402    0.499      0.494    0.887     0.495     设计
+                 0.355    0.013    0.615      0.355    0.450      0.446    0.873     0.447     艺术
+                 0.655    0.019    0.677      0.655    0.666      0.646    0.932     0.707     宗教
+                 0.794    0.151    0.355      0.794    0.491      0.461    0.926     0.761     军事
+                 0.376    0.016    0.677      0.376    0.484      0.474    0.878     0.515     历史
+                 0.553    0.004    0.511      0.553    0.531      0.528    0.885     0.469     三农
+                 0.258    0.008    0.326      0.258    0.288      0.281    0.834     0.248     法律
+Weighted Avg.    0.619    0.029    0.657      0.619    0.617      0.602    0.918     0.666     
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o    p    q    r   <-- classified as
+ 6203   22   18   27   53   45   33   87   61   34   62   12   18   32  499   25   12   17 |    a = 体育
+    6 3449   14   39  104   41   16   18   61   16   22   18    9   14  148    8    0    3 |    b = 美妆
+   61   62 2199   76  160  102  106  184   65   51  179   91   29  125  873   60   73   33 |    c = 科技
+   99  190   66 5105  199  342  817  149  221  110  117  178  239   83 1086   92   12   15 |    d = 动漫
+    9   42   22   26 5882   63    9   31   23   22   16   41   12   23  154   19   12    5 |    e = 美食
+   41   79   37  111  397 3369   53  106   81   52   46   21   27   87 1405   18    6   20 |    f = 萌宠
+   22   27   37  180   74   81 3336   54   30  167   29    9   29   37  183   30    1   12 |    g = 电影
+  177   73  265   83  207  178  163 4456  138   98  360  109   78  187 1191  328  176  405 |    h = 时事
+   34  102   15   48   59   41   54   50 3577   48   69   80   27   17  334   16    1    2 |    i = 时尚
+   84   63   50  105  215  177  311  143  112 1550   49   31   56  153  763   47    6   25 |    j = 综艺娱乐
+   98   44   98   61  135   84  117  339   65   70 5368   43   22   64  968   38    3   27 |    k = 汽车
+   37  135   85  131  302  137   87   90  179   36   85 2155  415  175 1226   44   21   19 |    l = 设计
+   99  112   56  126  248  120  142  163  131  102   61  326 1979  306 1407  159   15   16 |    m = 艺术
+   66   64   71   59  194   90   63  138   83   46   36   40   85 3870  852   94   13   43 |    n = 宗教
+   86   63   77   94  186  128  105  284   94   93   96   25   36  105 7846  449   22   90 |    o = 军事
+  174   93  131  144  284  186  157  496  145   56   98   84  134  341 2654 3181   28   72 |    p = 历史
+   11    4   34    7   42    6    9   69   10    3    9    6    9   15   85   17  427    9 |    q = 三农
+   34   12   41   15   50   27   24  255   21   25   35   10   14   84  409   73    7  394 |    r = 法律
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_800.txt
+
+Correctly Classified Instances       64346               61.9289 %
+Incorrectly Classified Instances     39557               38.0711 %
+Kappa statistic                          0.5915
+Mean absolute error                      0.0429
+Root mean squared error                  0.1787
+Relative absolute error                 41.2907 %
+Root relative squared error             78.4071 %
+Total Number of Instances           103903     
+
+--------------------------------------------
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:14239-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 800 ----------
+
+Correctly Classified Instances        1401               72.7414 %
+Incorrectly Classified Instances       525               27.2586 %
+Kappa statistic                          0.6916
+Mean absolute error                      0.0629
+Root mean squared error                  0.2155
+Relative absolute error                 31.9316 %
+Root relative squared error             68.6612 %
+Total Number of Instances             1926     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.858    0.013    0.885      0.858    0.871      0.857    0.975     0.915     体育
+                 0.804    0.135    0.508      0.804    0.622      0.560    0.941     0.795     军事
+                 0.430    0.019    0.748      0.430    0.546      0.528    0.901     0.642     历史
+                 0.613    0.037    0.703      0.613    0.655      0.611    0.894     0.712     时事
+                 0.707    0.021    0.801      0.707    0.751      0.725    0.951     0.817     汽车
+                 0.910    0.023    0.810      0.910    0.857      0.842    0.980     0.912     电影
+                 0.624    0.024    0.757      0.624    0.684      0.655    0.931     0.758     科技
+                 0.713    0.014    0.843      0.713    0.772      0.754    0.955     0.799     综艺娱乐
+                 0.925    0.026    0.805      0.925    0.861      0.846    0.989     0.944     美食
+Weighted Avg.    0.727    0.039    0.748      0.727    0.725      0.697    0.944     0.805     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   <-- classified as
+ 169  14   2   2   2   3   4   1   0 |   a = 体育
+   3 229  13  11   4   6   4   4  11 |   b = 军事
+   7  76  95  14   1   8   8   3   9 |   c = 历史
+   3  38   8 149   9   6  16   6   8 |   d = 时事
+   4  28   1  12 145   3   4   3   5 |   e = 汽车
+   2   3   2   4   2 171   1   2   1 |   f = 电影
+   1  32   4   9  12   7 128   5   7 |   g = 科技
+   2  24   1   8   4   6   3 129   4 |   h = 综艺娱乐
+   0   7   1   3   2   1   1   0 186 |   i = 美食
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_800.txt
+
+Correctly Classified Instances        1401               72.7414 %
+Incorrectly Classified Instances       525               27.2586 %
+Kappa statistic                          0.6916
+Mean absolute error                      0.0629
+Root mean squared error                  0.2155
+Relative absolute error                 31.9316 %
+Root relative squared error             68.6612 %
+Total Number of Instances             1926     
+
+similarity compute load arff
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+similarity compute stringToWord
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:14239-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+similarity compute feature selection
+--------------- attributes_selection_chi_2000 ---------------
+class attribute : @attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+属性数目:2001
+------- write attributes list to files:result/attributes_selection_chi_2000.txt  ---------------
+similarity compute compute similaritylist
+start compute attribute between-in similarity.num is : 2000
+写入文件成功。result/语义相似度带词性词性不同列表的计算结果.txt
+写入文件成功。result/语义相似度带词性的计算结果.txt
+done for compute attributes between-in similarity and filter with POS.similarity attributes num is :372
+filter similarity attribute .remove same similarity .bigin num attribute is: 372
+写入文件成功。result/语义相似度带词性的计算结果去重筛选后.txt
+filter similarity and remove same similarity attributes.result attribute num : 227
+similarity compute rewrite arff
+根据相似度列表 修改源文件
+写入文件成功。wekafiles/similarityText.arff
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:13973-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 800 ----------
+
+Correctly Classified Instances        1424               73.9356 %
+Incorrectly Classified Instances       502               26.0644 %
+Kappa statistic                          0.7052
+Mean absolute error                      0.0608
+Root mean squared error                  0.213 
+Relative absolute error                 30.8338 %
+Root relative squared error             67.8652 %
+Total Number of Instances             1926     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.893    0.009    0.921      0.893    0.907      0.897    0.983     0.938     体育
+                 0.818    0.120    0.542      0.818    0.652      0.595    0.946     0.813     军事
+                 0.398    0.019    0.733      0.398    0.516      0.500    0.895     0.628     历史
+                 0.663    0.033    0.745      0.663    0.702      0.663    0.902     0.745     时事
+                 0.688    0.019    0.815      0.688    0.746      0.722    0.954     0.819     汽车
+                 0.910    0.026    0.792      0.910    0.847      0.831    0.981     0.905     电影
+                 0.639    0.028    0.728      0.639    0.681      0.647    0.935     0.763     科技
+                 0.746    0.014    0.844      0.746    0.792      0.773    0.961     0.815     综艺娱乐
+                 0.935    0.030    0.783      0.935    0.853      0.838    0.989     0.939     美食
+Weighted Avg.    0.739    0.037    0.755      0.739    0.735      0.708    0.947     0.814     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   <-- classified as
+ 176  11   1   0   1   5   2   1   0 |   a = 体育
+   4 233  15   7   3   7   3   3  10 |   b = 军事
+   6  71  88  17   0   9  17   2  11 |   c = 历史
+   1  29   8 161   8   5  15   7   9 |   d = 时事
+   3  26   1  13 141   1   7   4   9 |   e = 汽车
+   0   3   2   3   4 171   1   3   1 |   f = 电影
+   0  29   3   8  11   8 131   5  10 |   g = 科技
+   1  21   1   5   4   9   3 135   2 |   h = 综艺娱乐
+   0   7   1   2   1   1   1   0 188 |   i = 美食
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_800.txt
+
+Correctly Classified Instances        1424               73.9356 %
+Incorrectly Classified Instances       502               26.0644 %
+Kappa statistic                          0.7052
+Mean absolute error                      0.0608
+Root mean squared error                  0.213 
+Relative absolute error                 30.8338 %
+Root relative squared error             67.8652 %
+Total Number of Instances             1926     
+
+-----------------
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:14239-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 1000 ----------
+
+Correctly Classified Instances        1424               73.9356 %
+Incorrectly Classified Instances       502               26.0644 %
+Kappa statistic                          0.7054
+Mean absolute error                      0.0594
+Root mean squared error                  0.2127
+Relative absolute error                 30.1689 %
+Root relative squared error             67.7694 %
+Total Number of Instances             1926     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.898    0.009    0.922      0.898    0.910      0.900    0.986     0.948     体育
+                 0.768    0.110    0.549      0.768    0.640      0.577    0.945     0.817     军事
+                 0.466    0.027    0.691      0.466    0.557      0.524    0.908     0.654     历史
+                 0.630    0.040    0.695      0.630    0.661      0.616    0.896     0.722     时事
+                 0.717    0.021    0.803      0.717    0.758      0.732    0.958     0.836     汽车
+                 0.920    0.031    0.762      0.920    0.834      0.818    0.983     0.916     电影
+                 0.620    0.020    0.784      0.620    0.692      0.666    0.938     0.772     科技
+                 0.773    0.012    0.870      0.773    0.819      0.803    0.966     0.844     综艺娱乐
+                 0.920    0.028    0.794      0.920    0.853      0.837    0.990     0.946     美食
+Weighted Avg.    0.739    0.037    0.750      0.739    0.737      0.707    0.950     0.823     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   <-- classified as
+ 177   7   1   2   2   5   2   1   0 |   a = 体育
+   3 219  18  12   5  10   2   3  13 |   b = 军事
+   7  66 103  16   0   9   7   2  11 |   c = 历史
+   1  32  14 153   7   8  14   4  10 |   d = 时事
+   3  23   1  12 147   6   5   3   5 |   e = 汽车
+   0   2   2   4   3 173   1   2   1 |   f = 电影
+   0  27   5  11  14   8 127   6   7 |   g = 科技
+   1  16   3   8   3   6   3 140   1 |   h = 综艺娱乐
+   0   7   2   2   2   2   1   0 185 |   i = 美食
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_1000.txt
+
+Correctly Classified Instances        1424               73.9356 %
+Incorrectly Classified Instances       502               26.0644 %
+Kappa statistic                          0.7054
+Mean absolute error                      0.0594
+Root mean squared error                  0.2127
+Relative absolute error                 30.1689 %
+Root relative squared error             67.7694 %
+Total Number of Instances             1926     
+
+similarity compute load arff
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+similarity compute stringToWord
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:14239-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+similarity compute feature selection
+--------------- attributes_selection_chi_2000 ---------------
+class attribute : @attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+属性数目:2001
+------- write attributes list to files:result/attributes_selection_chi_2000.txt  ---------------
+similarity compute compute similaritylist
+start compute attribute between-in similarity.num is : 2000
+写入文件成功。result/语义相似度带词性词性不同列表的计算结果.txt
+写入文件成功。result/语义相似度带词性的计算结果.txt
+done for compute attributes between-in similarity and filter with POS.similarity attributes num is :372
+filter similarity attribute .remove same similarity .bigin num attribute is: 372
+写入文件成功。result/语义相似度带词性的计算结果去重筛选后.txt
+filter similarity and remove same similarity attributes.result attribute num : 227
+similarity compute rewrite arff
+根据相似度列表 修改源文件
+写入文件成功。wekafiles/similarityText.arff
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:13973-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 1000 ----------
+
+Correctly Classified Instances        1441               74.8183 %
+Incorrectly Classified Instances       485               25.1817 %
+Kappa statistic                          0.7154
+Mean absolute error                      0.0583
+Root mean squared error                  0.2105
+Relative absolute error                 29.5794 %
+Root relative squared error             67.0597 %
+Total Number of Instances             1926     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.914    0.010    0.914      0.914    0.914      0.904    0.986     0.948     体育
+                 0.804    0.102    0.577      0.804    0.672      0.615    0.947     0.819     军事
+                 0.412    0.023    0.695      0.412    0.517      0.492    0.903     0.640     历史
+                 0.654    0.036    0.723      0.654    0.687      0.645    0.903     0.742     时事
+                 0.693    0.020    0.807      0.693    0.745      0.720    0.959     0.831     汽车
+                 0.920    0.028    0.779      0.920    0.844      0.829    0.984     0.918     电影
+                 0.683    0.026    0.761      0.683    0.720      0.690    0.942     0.791     科技
+                 0.762    0.015    0.841      0.762    0.800      0.782    0.964     0.829     综艺娱乐
+                 0.940    0.027    0.804      0.940    0.867      0.853    0.991     0.948     美食
+Weighted Avg.    0.748    0.035    0.756      0.748    0.743      0.715    0.951     0.824     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   <-- classified as
+ 180   6   0   0   2   6   2   1   0 |   a = 体育
+   4 229  20   9   3   8   1   2   9 |   b = 军事
+   7  65  91  19   0  10  15   3  11 |   c = 历史
+   1  26  11 159  10   6  15   7   8 |   d = 时事
+   3  23   1  15 142   3   7   4   7 |   e = 汽车
+   1   2   1   2   3 173   1   4   1 |   f = 电影
+   0  23   4   6  11   7 140   5   9 |   g = 科技
+   1  17   3   7   4   8   2 138   1 |   h = 综艺娱乐
+   0   6   0   3   1   1   1   0 189 |   i = 美食
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_1000.txt
+
+Correctly Classified Instances        1441               74.8183 %
+Incorrectly Classified Instances       485               25.1817 %
+Kappa statistic                          0.7154
+Mean absolute error                      0.0583
+Root mean squared error                  0.2105
+Relative absolute error                 29.5794 %
+Root relative squared error             67.0597 %
+Total Number of Instances             1926     
+--------------------------------
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:14239-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 2000 ----------
+
+Correctly Classified Instances        1562               81.1007 %
+Incorrectly Classified Instances       364               18.8993 %
+Kappa statistic                          0.7868
+Mean absolute error                      0.0446
+Root mean squared error                  0.1901
+Relative absolute error                 22.6268 %
+Root relative squared error             60.5768 %
+Total Number of Instances             1926     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.939    0.016    0.873      0.939    0.905      0.894    0.993     0.963     体育
+                 0.804    0.052    0.729      0.804    0.765      0.723    0.967     0.868     军事
+                 0.629    0.020    0.803      0.629    0.706      0.679    0.939     0.777     历史
+                 0.774    0.027    0.803      0.774    0.788      0.759    0.938     0.824     时事
+                 0.771    0.020    0.823      0.771    0.796      0.773    0.964     0.875     汽车
+                 0.936    0.020    0.834      0.936    0.882      0.870    0.989     0.932     电影
+                 0.737    0.020    0.816      0.737    0.774      0.750    0.958     0.848     科技
+                 0.812    0.016    0.840      0.812    0.826      0.808    0.973     0.864     综艺娱乐
+                 0.940    0.024    0.822      0.940    0.877      0.864    0.992     0.954     美食
+Weighted Avg.    0.811    0.025    0.811      0.811    0.808      0.785    0.967     0.875     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   <-- classified as
+ 185   6   1   1   1   2   0   0   1 |   a = 体育
+   6 229   7  12   7   8   4   3   9 |   b = 军事
+   6  33 139   7   1   8  12   4  11 |   c = 历史
+   2  11   9 188   6   4  10   6   7 |   d = 时事
+   6  11   5  10 158   4   4   4   3 |   e = 汽车
+   1   3   1   0   2 176   0   4   1 |   f = 电影
+   2  10   6   7  10   5 151   7   7 |   g = 科技
+   3  10   3   8   5   1   2 147   2 |   h = 综艺娱乐
+   1   1   2   1   2   3   2   0 189 |   i = 美食
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_2000.txt
+
+Correctly Classified Instances        1562               81.1007 %
+Incorrectly Classified Instances       364               18.8993 %
+Kappa statistic                          0.7868
+Mean absolute error                      0.0446
+Root mean squared error                  0.1901
+Relative absolute error                 22.6268 %
+Root relative squared error             60.5768 %
+Total Number of Instances             1926     
+
+similarity compute load arff
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+similarity compute stringToWord
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:14239-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+similarity compute feature selection
+--------------- attributes_selection_chi_2000 ---------------
+class attribute : @attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+属性数目:2001
+------- write attributes list to files:result/attributes_selection_chi_2000.txt  ---------------
+similarity compute compute similaritylist
+start compute attribute between-in similarity.num is : 2000
+写入文件成功。result/语义相似度带词性词性不同列表的计算结果.txt
+写入文件成功。result/语义相似度带词性的计算结果.txt
+done for compute attributes between-in similarity and filter with POS.similarity attributes num is :372
+filter similarity attribute .remove same similarity .bigin num attribute is: 372
+写入文件成功。result/语义相似度带词性的计算结果去重筛选后.txt
+filter similarity and remove same similarity attributes.result attribute num : 227
+similarity compute rewrite arff
+根据相似度列表 修改源文件
+写入文件成功。wekafiles/similarityText.arff
+加载数据文件成功
+@relation D__weibo_category9_hasNISegment
+
+@attribute text string
+@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+-------------- 文档转变词向量成功 特征数目:13973-------------------
+第一个属性是:@attribute @@class@@ {体育,军事,历史,时事,汽车,电影,科技,综艺娱乐,美食}
+最后属性是:@attribute Ｒ numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 2000 ----------
+
+Correctly Classified Instances        1512               78.5047 %
+Incorrectly Classified Instances       414               21.4953 %
+Kappa statistic                          0.7574
+Mean absolute error                      0.0503
+Root mean squared error                  0.2016
+Relative absolute error                 25.5503 %
+Root relative squared error             64.2431 %
+Total Number of Instances             1926     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.919    0.015    0.874      0.919    0.896      0.884    0.991     0.956     体育
+                 0.818    0.059    0.706      0.818    0.758      0.715    0.965     0.864     军事
+                 0.529    0.026    0.722      0.529    0.611      0.578    0.923     0.719     历史
+                 0.770    0.033    0.773      0.770    0.771      0.738    0.935     0.823     时事
+                 0.663    0.013    0.861      0.663    0.749      0.731    0.949     0.824     汽车
+                 0.931    0.026    0.795      0.931    0.858      0.844    0.988     0.933     电影
+                 0.737    0.027    0.763      0.737    0.749      0.720    0.956     0.834     科技
+                 0.779    0.017    0.825      0.779    0.801      0.782    0.969     0.844     综艺娱乐
+                 0.950    0.027    0.803      0.950    0.870      0.857    0.993     0.954     美食
+Weighted Avg.    0.785    0.029    0.786      0.785    0.781      0.755    0.962     0.858     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   <-- classified as
+ 181   8   1   1   1   3   1   0   1 |   a = 体育
+   6 233   9  10   4   7   3   3  10 |   b = 军事
+   9  41 117  12   0   9  19   3  11 |   c = 历史
+   2  11   7 187   5   5  11   6   9 |   d = 时事
+   5   7  20  14 136   7   7   6   3 |   e = 汽车
+   1   2   1   0   1 175   1   5   2 |   f = 电影
+   1  13   5   8   5   7 151   7   8 |   g = 科技
+   2  12   2   9   4   5   3 141   3 |   h = 综艺娱乐
+   0   3   0   1   2   2   2   0 191 |   i = 美食
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_2000.txt
+
+Correctly Classified Instances        1512               78.5047 %
+Incorrectly Classified Instances       414               21.4953 %
+Kappa statistic                          0.7574
+Mean absolute error                      0.0503
+Root mean squared error                  0.2016
+Relative absolute error                 25.5503 %
+Root relative squared error             64.2431 %
+Total Number of Instances             1926     
+
+--------------------------------
+加载数据文件成功
+@relation D__weibo_catagory_data10W_nlpirSegment_hasNI
+
+@attribute text string
+@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+-------------- 文档转变词向量成功 特征数目:19104-------------------
+第一个属性是:@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+最后属性是:@attribute 齐齐哈尔 numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 2000 ----------
+
+Correctly Classified Instances       72656               69.9268 %
+Incorrectly Classified Instances     31247               30.0732 %
+Kappa statistic                          0.6784
+Mean absolute error                      0.0339
+Root mean squared error                  0.1668
+Relative absolute error                 32.5973 %
+Root relative squared error             73.1739 %
+Total Number of Instances           103903     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.895    0.009    0.876      0.895    0.886      0.877    0.986     0.923     体育
+                 0.918    0.014    0.729      0.918    0.813      0.811    0.987     0.902     美妆
+                 0.629    0.013    0.688      0.629    0.657      0.643    0.923     0.669     科技
+                 0.736    0.016    0.816      0.736    0.774      0.754    0.955     0.814     动漫
+                 0.927    0.021    0.740      0.927    0.823      0.816    0.986     0.907     美食
+                 0.643    0.021    0.652      0.643    0.647      0.626    0.951     0.699     萌宠
+                 0.831    0.016    0.691      0.831    0.755      0.746    0.969     0.801     电影
+                 0.604    0.024    0.699      0.604    0.648      0.620    0.899     0.658     时事
+                 0.858    0.015    0.723      0.858    0.785      0.777    0.976     0.848     时尚
+                 0.617    0.015    0.617      0.617    0.617      0.602    0.928     0.635     综艺娱乐
+                 0.754    0.009    0.867      0.754    0.806      0.794    0.960     0.837     汽车
+                 0.483    0.018    0.597      0.483    0.534      0.515    0.912     0.554     设计
+                 0.452    0.012    0.674      0.452    0.541      0.532    0.908     0.554     艺术
+                 0.720    0.017    0.724      0.720    0.722      0.705    0.951     0.773     宗教
+                 0.760    0.066    0.547      0.760    0.636      0.601    0.943     0.799     军事
+                 0.508    0.017    0.723      0.508    0.597      0.578    0.914     0.636     历史
+                 0.733    0.006    0.471      0.733    0.574      0.584    0.933     0.590     三农
+                 0.310    0.012    0.285      0.310    0.297      0.286    0.862     0.268     法律
+Weighted Avg.    0.699    0.021    0.707      0.699    0.696      0.679    0.944     0.745     
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o    p    q    r   <-- classified as
+ 6498   17   33   47   36   49   37   56   77   53   40   22   26   36  171   42    5   15 |    a = 体育
+    3 3661   22   25   47   53    6    9   59   18    6   28    5   13   22    8    0    1 |    b = 美妆
+   56   83 2848   85  111  115   89  181   68   96   97  107   33   76  319   67   54   44 |    c = 科技
+   79  167   96 6710  111  218  426  120  137  111   59  246   94   74  335   91   17   29 |    d = 动漫
+    6   46   26   30 5946  107   21   26   16   18    4   46    4   19   56   16   18    6 |    e = 美食
+   35  129   51  134  335 3830   62   95  109  118   27   69   31  102  749   47   13   20 |    f = 萌宠
+   13   14   18  145   36   73 3605   27   28  164   14   27   30   42   65   29    2    6 |    g = 电影
+   86   46  252   77  123  183  100 5235   93  168  220  120   90  104  549  265  312  649 |    h = 时事
+   22  121   23   30   37   55   33   16 3923   54   26   84   34   19   76   16    2    3 |    i = 时尚
+   56   74   65  104  124  165  164   88  115 2432   31   57   65   91  240   37    6   26 |    j = 综艺娱乐
+   90   60  128   80   88  127  106  300   66   80 5763   80   41   59  490   50    6   30 |    k = 汽车
+   49  175  116  163  259  205   88   57  231  101   71 2587  358  175  610   70   27   17 |    l = 设计
+   88  131   70  151  172  162  121  111  137  138   46  518 2519  291  631  226   25   31 |    m = 艺术
+   42   72   46   72  156  123   63   97   88  114   28   91  112 4253  369  121   25   35 |    n = 宗教
+  110   91  111  125  146  166   88  319  131  143   95   73   56   94 7506  459   38  128 |    o = 军事
+  150  114  153  221  232  207  180  396  124  106   86  132  207  353 1296 4300   64  137 |    p = 历史
+    4    2   33    5   30    3    2   51    1    8    8    7    6    6   16   14  566   10 |    q = 三农
+   29   17   51   21   41   37   26  310   21   18   29   37   26   69  212   91   21  474 |    r = 法律
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_2000.txt
+
+Correctly Classified Instances       72656               69.9268 %
+Incorrectly Classified Instances     31247               30.0732 %
+Kappa statistic                          0.6784
+Mean absolute error                      0.0339
+Root mean squared error                  0.1668
+Relative absolute error                 32.5973 %
+Root relative squared error             73.1739 %
+Total Number of Instances           103903     
+
+similarity compute load arff
+加载数据文件成功
+@relation D__weibo_catagory_data10W_nlpirSegment_hasNI
+
+@attribute text string
+@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+
+@data
+
+similarity compute stringToWord
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+-------------- 文档转变词向量成功 特征数目:19104-------------------
+第一个属性是:@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+最后属性是:@attribute 齐齐哈尔 numeric
+similarity compute feature selection
+--------------- attributes_selection_chi_2000 ---------------
+class attribute : @attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+属性数目:2001
+------- write attributes list to files:result/attributes_selection_chi_2000.txt  ---------------
+similarity compute compute similaritylist
+start compute attribute between-in similarity.num is : 2000
+写入文件成功。result/语义相似度带词性词性不同列表的计算结果.txt
+写入文件成功。result/语义相似度带词性的计算结果.txt
+done for compute attributes between-in similarity and filter with POS.similarity attributes num is :358
+filter similarity attribute .remove same similarity .bigin num attribute is: 358
+写入文件成功。result/语义相似度带词性的计算结果去重筛选后.txt
+filter similarity and remove same similarity attributes.result attribute num : 203
+similarity compute rewrite arff
+根据相似度列表 修改源文件
+写入文件成功。wekafiles/similarity_wb10w-hasni.arff
+加载数据文件成功
+@relation D__weibo_catagory_data10W_nlpirSegment_hasNI
+
+@attribute text string
+@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+
+@data
+
+----------- 文档数据转换词向量 权值采用 tfidf值 -------------
+确保设置好 类属性位置.@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+-------------- 文档转变词向量成功 特征数目:18884-------------------
+第一个属性是:@attribute @@class@@ {体育,美妆,科技,动漫,美食,萌宠,电影,时事,时尚,综艺娱乐,汽车,设计,艺术,宗教,军事,历史,三农,法律}
+最后属性是:@attribute 齐齐哈尔 numeric
+--------- CHI_特征选择方法_NaivebayesMultinomial分类方法, maxNumAttribute is 2000 ----------
+
+Correctly Classified Instances       71934               69.2319 %
+Incorrectly Classified Instances     31969               30.7681 %
+Kappa statistic                          0.671 
+Mean absolute error                      0.0346
+Root mean squared error                  0.1686
+Relative absolute error                 33.3583 %
+Root relative squared error             74.0056 %
+Total Number of Instances           103903     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.902    0.009    0.885      0.902    0.894      0.886    0.987     0.929     体育
+                 0.902    0.013    0.738      0.902    0.811      0.808    0.985     0.891     美妆
+                 0.634    0.015    0.665      0.634    0.649      0.634    0.922     0.670     科技
+                 0.702    0.015    0.817      0.702    0.755      0.736    0.950     0.794     动漫
+                 0.922    0.023    0.725      0.922    0.812      0.804    0.985     0.900     美食
+                 0.643    0.024    0.624      0.643    0.633      0.610    0.950     0.693     萌宠
+                 0.803    0.019    0.649      0.803    0.718      0.709    0.965     0.777     电影
+                 0.603    0.024    0.695      0.603    0.646      0.618    0.898     0.660     时事
+                 0.847    0.015    0.716      0.847    0.776      0.768    0.975     0.835     时尚
+                 0.606    0.015    0.616      0.606    0.611      0.596    0.925     0.628     综艺娱乐
+                 0.756    0.010    0.862      0.756    0.805      0.793    0.960     0.837     汽车
+                 0.466    0.018    0.590      0.466    0.521      0.502    0.910     0.549     设计
+                 0.434    0.014    0.635      0.434    0.515      0.503    0.903     0.532     艺术
+                 0.718    0.016    0.728      0.718    0.723      0.706    0.951     0.773     宗教
+                 0.752    0.062    0.559      0.752    0.641      0.606    0.941     0.796     军事
+                 0.516    0.019    0.708      0.516    0.597      0.576    0.914     0.630     历史
+                 0.714    0.006    0.474      0.714    0.570      0.578    0.931     0.583     三农
+                 0.339    0.013    0.287      0.339    0.311      0.301    0.866     0.284     法律
+Weighted Avg.    0.692    0.021    0.699      0.692    0.689      0.672    0.942     0.739     
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o    p    q    r   <-- classified as
+ 6549   17   30   42   28   44   33   56   68   37   42   25   31   26  168   41    9   14 |    a = 体育
+    4 3594   27   29   75   51    7   15   57   17    9   38   12   11   30    8    0    2 |    b = 美妆
+   45   60 2871   75  112  140   92  185   76   97   96  110   33   66  299   73   55   44 |    c = 科技
+   76  177  105 6405  123  278  556  124  137  122   65  253  156   67  312  116   17   31 |    d = 动漫
+    5   55   35   22 5913  108   19   32   22   19    3   46   11   21   67   16   13    4 |    e = 美食
+   32  122   62  137  356 3828   71  118  113  115   22   84   30   93  702   41   12   18 |    f = 萌宠
+   11   12   21  172   50   85 3485   30   28  195   16   25   55   33   81   26    1   12 |    g = 电影
+   98   34  260   57  121  221   99 5230   83  121  227  107  103   94  525  287  299  706 |    h = 时事
+   23  127   29   39   58   66   43   28 3872   57   29   83   24   14   61   17    1    3 |    i = 时尚
+   48   63   79   98  130  195  183   99  108 2389   37   46   63   84  226   53    7   32 |    j = 综艺娱乐
+   82   53  137   72  107  155  100  287   72   73 5776   71   45   63  460   46   10   35 |    k = 汽车
+   56  172  132  148  268  227  105   76  235   97   78 2499  384  178  583   79   27   15 |    l = 设计
+   81  134   92  161  186  160  196  118  145  148   47  478 2415  307  610  235   21   34 |    m = 艺术
+   41   70   41   70  168  119   69  101   98  106   25  105  126 4239  327  151   21   30 |    n = 宗教
+   92   62  130  106  157  185  104  302  149  152  100   82   66   93 7432  503   31  133 |    o = 军事
+  126  101  177  181  241  225  190  396  123  107   84  138  215  359 1206 4368   67  154 |    p = 历史
+    2    4   33    2   30    3    4   50    1    7    6    7    5    7   19   24  551   17 |    q = 三农
+   26   15   54   20   38   49   17  275   19   22   39   40   32   71  186   88   21  518 |    r = 法律
+
+
+写入文件成功。result/CHI_特征选择方法_NaivebayesMultinomial分类方法_2000.txt
+
+Correctly Classified Instances       71934               69.2319 %
+Incorrectly Classified Instances     31969               30.7681 %
+Kappa statistic                          0.671 
+Mean absolute error                      0.0346
+Root mean squared error                  0.1686
+Relative absolute error                 33.3583 %
+Root relative squared error             74.0056 %
+Total Number of Instances           103903     
+
+--------------------------
+

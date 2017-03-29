@@ -6,12 +6,7 @@ import shmtu.util.CommonUtils;
 import shmtu.wekautils.WekaAttributeEvalUtil;
 import shmtu.wekautils.WekaUtil;
 import shmtu.wekautils.WordRelationUtil;
-import weka.core.Attribute;
-import weka.core.Instance;
 import weka.core.Instances;
-import weka.filters.Filter;
-import weka.filters.supervised.attribute.Discretize;
-import weka.filters.unsupervised.attribute.NumericToBinary;
 
 /**
  * 词相关 计算
@@ -23,11 +18,14 @@ public class WekaWordRelationTest {
 	public static void doSomething() throws Exception {
 		//1.加载数据
 		String arffFilePath = "wekafiles/texts.arff";
+//		
+		
 		Instances data = WekaUtil.loadArffByDataSource(arffFilePath);
 		data.setClassIndex(data.numAttributes()-1);
 		WekaUtil.printHeader(data);
 		//2.词向量转换
-		Instances dataStringToVector = WekaUtil.stringToVectorWeightBoolean(data);
+		Integer numWordsToKeey = 1000;
+		Instances dataStringToVector = WekaUtil.stringToVectorWeightBoolean(data,numWordsToKeey);
 		dataStringToVector.setClassIndex(0);
 		//3.特征选择
 		int maxNumAttribute = 100;

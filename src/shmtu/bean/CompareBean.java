@@ -9,6 +9,8 @@ public class CompareBean {
 	private double value;
 	private int index;
 	public double getValue() {
+		if(Double.isNaN(value))
+			return 0.0;
 		return value;
 	}
 	public void setValue(double value) {
@@ -20,6 +22,7 @@ public class CompareBean {
 	public void setIndex(int index) {
 		this.index = index;
 	}
+	@Override
 	public String toString(){
 		return "index:"+index+";value:"+value;
 	}
